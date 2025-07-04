@@ -1,11 +1,11 @@
 name: advanced_logger
 description: "An advanced logging package offering enhanced flexibility and extensibility for diverse logging needs."
-version: 0.0.1
+version: 0.0.2
 license: MIT
 homepage: https://github.com/take-p/advanced_logger
 
 environment:
-  sdk: ^3.7.2
+  sdk: ^3.6.0
   flutter: ">=1.17.0"
 
 dependencies:
