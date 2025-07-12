@@ -7,11 +7,12 @@ An advanced logging package offering enhanced flexibility and extensibility for 
 [GitHub](https://github.com/take-p/advanced_logger)
 
 ### Features
-- Singleton pattern for a single shared instance  
-- Pretty-printed logs with colors and emojis  
-- JSON output with indentation for readability  
-- Support for log levels: `debug`, `info`, `warning`, `error`, `fatal`  
-- Built on and fully compatible with the [logger](https://pub.dev/packages/logger) package  
+- **Global functions**: Use `debugLog()`, `infoLog()`, etc. without instance creation (like `debugPrint`)  
+- **Singleton pattern**: Shared instance available via `AdvancedLogger()`  
+- **Pretty-printed logs**: Colors and emojis for better visibility  
+- **JSON output**: Indented JSON formatting for readability  
+- **Multiple log levels**: `debug`, `info`, `warning`, `error`, `fatal`  
+- **Built on [logger](https://pub.dev/packages/logger)**: Fully compatible with the standard logger package  
 
 ### Installation
 ```bash
@@ -22,10 +23,30 @@ flutter pub add advanced_logger
 Or in `pubspec.yaml`:
 ```yaml
 dependencies:
-  advanced_logger: ^0.0.1
+  advanced_logger: ^0.1.0
 ```
 
 ### Usage
+
+#### Global Functions (Recommended)
+```dart
+import 'package:advanced_logger/advanced_logger.dart';
+
+void main() {
+  // Use global functions directly - no instance needed!
+  debugLog('Debug message');
+  infoLog('Info message');
+  warningLog('Warning message');
+  errorLog('Error message');
+  fatalLog('Fatal message');
+
+  // JSON formatting also available
+  final data = {'user': 'alice', 'age': 28};
+  infoLogWithJson('User data', data);
+}
+```
+
+#### Instance-based Usage
 ```dart
 import 'package:advanced_logger/advanced_logger.dart';
 
@@ -44,7 +65,22 @@ void main() {
 ```
 
 ### API Reference
-#### `AdvancedLogger()`
+
+#### Global Functions
+| Function                                      | Description                       |
+|-----------------------------------------------|-----------------------------------|
+| `debugLog(String msg, [dynamic error, StackTrace?])`     | Log at debug level                |
+| `infoLog(String msg, [dynamic error, StackTrace?])`      | Log at info level                 |
+| `warningLog(String msg, [dynamic error, StackTrace?])`   | Log at warning level              |
+| `errorLog(String msg, [dynamic error, StackTrace?])`     | Log at error level                |
+| `fatalLog(String msg, [dynamic error, StackTrace?])`     | Log at fatal level                |
+| `debugLogWithJson(String msg, dynamic json, [error, StackTrace?])`   | Debug with formatted JSON  |
+| `infoLogWithJson(String msg, dynamic json, [error, StackTrace?])`    | Info with formatted JSON   |
+| `warningLogWithJson(String msg, dynamic json, [error, StackTrace?])` | Warning with formatted JSON|
+| `errorLogWithJson(String msg, dynamic json, [error, StackTrace?])`   | Error with formatted JSON  |
+| `fatalLogWithJson(String msg, dynamic json, [error, StackTrace?])`   | Fatal with formatted JSON  |
+
+#### `AdvancedLogger()` Class
 Returns the singleton instance.
 
 ##### Methods
@@ -93,10 +129,30 @@ flutter pub add advanced_logger
 または `pubspec.yaml` に追記:
 ```yaml
 dependencies:
-  advanced_logger: ^0.0.1
+  advanced_logger: ^0.1.0
 ```
 
 ### 使い方
+
+#### グローバル関数（推奨）
+```dart
+import 'package:advanced_logger/advanced_logger.dart';
+
+void main() {
+  // グローバル関数を直接使用 - インスタンス不要！
+  debugLog('デバッグメッセージ');
+  infoLog('情報メッセージ');
+  warningLog('警告メッセージ');
+  errorLog('エラーメッセージ');
+  fatalLog('致命的エラーメッセージ');
+
+  // JSON 整形も利用可能
+  final data = {'user': 'alice', 'age': 28};
+  infoLogWithJson('ユーザーデータ', data);
+}
+```
+
+#### インスタンスベースの使用
 ```dart
 import 'package:advanced_logger/advanced_logger.dart';
 
@@ -115,7 +171,22 @@ void main() {
 ```
 
 ### API リファレンス
-#### `AdvancedLogger()`
+
+#### グローバル関数
+| 関数                                                              | 説明                         |
+|-------------------------------------------------------------------|------------------------------|
+| `debugLog(String msg, [dynamic error, StackTrace?])`              | デバッグレベルで出力        |
+| `infoLog(String msg, [dynamic error, StackTrace?])`               | 情報レベルで出力            |
+| `warningLog(String msg, [dynamic error, StackTrace?])`            | 警告レベルで出力            |
+| `errorLog(String msg, [dynamic error, StackTrace?])`              | エラーレベルで出力          |
+| `fatalLog(String msg, [dynamic error, StackTrace?])`              | 致命的エラーとして出力      |
+| `debugLogWithJson(String msg, dynamic json, [error, StackTrace?])`   | JSON 整形付きでデバッグ出力 |
+| `infoLogWithJson(String msg, dynamic json, [error, StackTrace?])`    | JSON 整形付きで情報出力     |
+| `warningLogWithJson(String msg, dynamic json, [error, StackTrace?])` | JSON 整形付きで警告出力     |
+| `errorLogWithJson(String msg, dynamic json, [error, StackTrace?])`   | JSON 整形付きでエラー出力   |
+| `fatalLogWithJson(String msg, dynamic json, [error, StackTrace?])`   | JSON 整形付きで致命的出力   |
+
+#### `AdvancedLogger()` クラス
 シングルトンインスタンスを返します。
 
 ##### メソッド一覧
