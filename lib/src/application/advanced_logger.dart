@@ -92,3 +92,71 @@ class AdvancedLogger {
     _logger.f("$message\n$pretty", error: error, stackTrace: stackTrace);
   }
 }
+
+// グローバル関数 - importするだけで使用可能
+final AdvancedLogger _globalLogger = AdvancedLogger();
+
+void debugLog(String message, [dynamic error, StackTrace? stackTrace]) {
+  _globalLogger.debug(message, error, stackTrace);
+}
+
+void infoLog(String message, [dynamic error, StackTrace? stackTrace]) {
+  _globalLogger.info(message, error, stackTrace);
+}
+
+void warningLog(String message, [dynamic error, StackTrace? stackTrace]) {
+  _globalLogger.warning(message, error, stackTrace);
+}
+
+void errorLog(String message, [dynamic error, StackTrace? stackTrace]) {
+  _globalLogger.error(message, error, stackTrace);
+}
+
+void fatalLog(String message, [dynamic error, StackTrace? stackTrace]) {
+  _globalLogger.fatal(message, error, stackTrace);
+}
+
+void debugLogWithJson(
+  String message,
+  dynamic json, [
+  dynamic error,
+  StackTrace? stackTrace,
+]) {
+  _globalLogger.debugWithJson(message, json, error, stackTrace);
+}
+
+void infoLogWithJson(
+  String message,
+  dynamic json, [
+  dynamic error,
+  StackTrace? stackTrace,
+]) {
+  _globalLogger.infoWithJson(message, json, error, stackTrace);
+}
+
+void warningLogWithJson(
+  String message,
+  dynamic json, [
+  dynamic error,
+  StackTrace? stackTrace,
+]) {
+  _globalLogger.warningWithJson(message, json, error, stackTrace);
+}
+
+void errorLogWithJson(
+  String message,
+  dynamic json, [
+  dynamic error,
+  StackTrace? stackTrace,
+]) {
+  _globalLogger.errorWithJson(message, json, error, stackTrace);
+}
+
+void fatalLogWithJson(
+  String message,
+  dynamic json, [
+  dynamic error,
+  StackTrace? stackTrace,
+]) {
+  _globalLogger.fatalWithJson(message, json, error, stackTrace);
+}
