@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:logger/logger.dart';
 
 class AdvancedLogger {
@@ -93,27 +94,35 @@ class AdvancedLogger {
   }
 }
 
-// グローバル関数 - importするだけで使用可能
-final AdvancedLogger _globalLogger = AdvancedLogger();
+final _logger = Logger(
+  printer: PrettyPrinter(
+    methodCount: 2, // 呼び出し元のスタックトレースの行数
+    errorMethodCount: 8, // エラー時のスタックトレースの行数
+    lineLength: 120, // 1行の長さ
+    colors: true, // カラー表示
+    printEmojis: true, // 絵文字の表示
+    //printTime: true, // タイムスタンプの表示
+  ),
+);
 
 void debugLog(String message, [dynamic error, StackTrace? stackTrace]) {
-  _globalLogger.debug(message, error, stackTrace);
+  _logger.d(message, error: error, stackTrace: stackTrace);
 }
 
 void infoLog(String message, [dynamic error, StackTrace? stackTrace]) {
-  _globalLogger.info(message, error, stackTrace);
+  _logger.i(message, error: error, stackTrace: stackTrace);
 }
 
 void warningLog(String message, [dynamic error, StackTrace? stackTrace]) {
-  _globalLogger.warning(message, error, stackTrace);
+  _logger.w(message, error: error, stackTrace: stackTrace);
 }
 
 void errorLog(String message, [dynamic error, StackTrace? stackTrace]) {
-  _globalLogger.error(message, error, stackTrace);
+  _logger.e(message, error: error, stackTrace: stackTrace);
 }
 
 void fatalLog(String message, [dynamic error, StackTrace? stackTrace]) {
-  _globalLogger.fatal(message, error, stackTrace);
+  _logger.f(message, error: error, stackTrace: stackTrace);
 }
 
 void debugLogWithJson(
@@ -122,7 +131,8 @@ void debugLogWithJson(
   dynamic error,
   StackTrace? stackTrace,
 ]) {
-  _globalLogger.debugWithJson(message, json, error, stackTrace);
+  final pretty = JsonEncoder.withIndent('  ').convert(json);
+  _logger.d("$message\n$pretty", error: error, stackTrace: stackTrace);
 }
 
 void infoLogWithJson(
@@ -131,7 +141,8 @@ void infoLogWithJson(
   dynamic error,
   StackTrace? stackTrace,
 ]) {
-  _globalLogger.infoWithJson(message, json, error, stackTrace);
+  final pretty = JsonEncoder.withIndent('  ').convert(json);
+  _logger.i("$message\n$pretty", error: error, stackTrace: stackTrace);
 }
 
 void warningLogWithJson(
@@ -140,7 +151,8 @@ void warningLogWithJson(
   dynamic error,
   StackTrace? stackTrace,
 ]) {
-  _globalLogger.warningWithJson(message, json, error, stackTrace);
+  final pretty = JsonEncoder.withIndent('  ').convert(json);
+  _logger.w("$message\n$pretty", error: error, stackTrace: stackTrace);
 }
 
 void errorLogWithJson(
@@ -149,7 +161,8 @@ void errorLogWithJson(
   dynamic error,
   StackTrace? stackTrace,
 ]) {
-  _globalLogger.errorWithJson(message, json, error, stackTrace);
+  final pretty = JsonEncoder.withIndent('  ').convert(json);
+  _logger.e("$message\n$pretty", error: error, stackTrace: stackTrace);
 }
 
 void fatalLogWithJson(
@@ -158,5 +171,6 @@ void fatalLogWithJson(
   dynamic error,
   StackTrace? stackTrace,
 ]) {
-  _globalLogger.fatalWithJson(message, json, error, stackTrace);
+  final pretty = JsonEncoder.withIndent('  ').convert(json);
+  _logger.f("$message\n$pretty", error: error, stackTrace: stackTrace);
 }

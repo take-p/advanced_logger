@@ -23,7 +23,7 @@ flutter pub add advanced_logger
 Or in `pubspec.yaml`:
 ```yaml
 dependencies:
-  advanced_logger: ^0.1.0
+  advanced_logger: ^0.1.2
 ```
 
 ### Usage
@@ -129,7 +129,7 @@ flutter pub add advanced_logger
 または `pubspec.yaml` に追記:
 ```yaml
 dependencies:
-  advanced_logger: ^0.1.0
+  advanced_logger: ^0.1.2
 ```
 
 ### 使い方
